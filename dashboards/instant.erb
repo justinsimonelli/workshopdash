@@ -1,0 +1,74 @@
+<script type='text/javascript'>
+  $(function() {
+    var cols = 4
+    var width = ($(document).width() - (cols * 10)) / cols
+    Dashing.widget_base_dimensions = [width, width * 0.92]
+    Dashing.numColumns = cols
+    Dashing.cycleDashboards({
+      timeInSeconds: <%= WorkshopDash::BaseWidget.config("dashboard-cycle") %>, 
+      stagger: true
+    });
+    
+    //<%# add configured conditions to widgets in the frontend foreach widget -> foreach condition %>
+    <% WorkshopDash::BaseWidget.widgets.each do |id, widget| %><% widget.conditions.each do |condition| %>
+      Dashing.BaseWidget.addCondition('<%= id %>', <%= condition.to_json %>);
+    <% end %><% end %>
+  });
+</script>
+<% content_for :title do %>WorkshopDash<% end %>
+
+<div class="gridster" id="seconddash">
+  <ul>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+     <div data-id="sw_stock_quote" data-view="Stock" data-prefix="$" class="widget-graph"></div>
+    </li>
+    <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="jira_issue_count" data-view="Number" data-title="Jira Open Items"></div>
+    </li>
+    <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
+      <div data-id="server_status" data-view="ServerStatus" data-title="Server Status"></div>
+    </li>
+    <li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
+      <div data-id="ga_visitor_count" data-view="Graph" data-title="Current Visitors"></div>
+    </li>
+    <li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="jira_road_map" data-view="Progress" data-title="Jira Road Map"></div>
+    </li>
+    <li data-row="2" data-col="3" data-sizex="2" data-sizey="1">
+      <div data-id="ga_avg_page_load_times" data-view="Graph" data-title="Current Avg Page-Load Time (seconds)"></div>
+    </li>
+  </ul>
+</div>
+
+<div class="gridster" id="firstdash">
+  <ul>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="pricing_load" data-view="Meter" data-title="Pricing Load" data-max="3" data-redtogreen="true"></div>
+    </li>
+    <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="job1" data-view="Meter" data-title="Jenkins Build (Maint)" data-description="Sherwin Williams Maintenance Integration" 
+        data-danger-if="current_result = 'FAILURE'"></div>
+    </li>
+    <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
+      <div data-id="job2" data-view="Meter" data-title="Jenkins Build (Proj)" data-description="Sherwin Williams Project Integration"></div>
+    </li>
+    <li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
+      <div data-id="job2" data-view="Meter" data-title="Jenkins Build (Emer)" data-description="Sherwin Williams Emergency QA"></div>
+    </li>
+
+    <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="twitter_mentions" data-view="Comments" style="background-color:#ff9618;" data-moreinfo="Sherwin Williams Tweets"></div>
+      <i class="icon-twitter icon-background"></i>
+    </li>
+    <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="welcome" data-view="Text" data-title="Hello" data-text="This is your shiny new dashboard."></div>
+    </li>
+    <li data-row="2" data-col="3" data-sizex="2" data-sizey="1">
+      <div data-id="google_calendar_swis" data-view="GoogleCalendar" style="background-color:#4183C5;"></div>
+      <i class="icon-calendar icon-background"></i>
+    </li>
+  </ul>
+</div>
+
+<!-- Special widgets that don't display on the page -->
+<div data-id="remote" data-view="RemoteReload" style="padding: 0px"></div>

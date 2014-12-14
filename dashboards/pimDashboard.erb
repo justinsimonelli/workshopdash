@@ -1,0 +1,41 @@
+<script type='text/javascript'>
+$(function() {
+  // These settings override the defaults set in application.coffee. You can do this on a per dashboard basis.
+  Dashing.gridsterLayout('[{"col":1,"row":1},{"col":3,"row":1},{"col":4,"row":1},{"col":4,"row":2},{"col":4,"row":3},{"col":2,"row":2}]')
+  Dashing.widget_base_dimensions = [370, 320]
+  Dashing.numColumns = 5
+});
+</script>
+
+
+<% content_for :title do %>PIM Dashboard<% end %>
+
+<div class="gridster">
+  <ul>
+    
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="2">
+      <div data-id="google_calendar_<calendar_name>" data-view="GoogleCalendar" data-title="Google Calendar" style="background-color:#4183C5;"></div>
+      <i class="icon-calendar icon-background"></i>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="welcome" data-view="Text" data-title="Hello" data-text data-moreinfo="Protip: You can drag the widgets around!"></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="standups" data-view="Standups" data-title="Standups" data-unordered="true" data-sizestyle="three" data-text></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="demos" data-view="Text" data-text data-moreinfo="Time to show some stuff off.." data-title="Demos"></div>
+    </li>
+
+    <!-- 
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="2" style="z-index: 99999999">
+      <div data-id="beer" data-view="Fridaybeer" data-title="Cards completed until beer time:" data-totalcards="5"></div> 
+      <div data-id="beer" data-view="Fridaybeer"></div>
+    </li>
+    -->
+
+  </ul>
+</div>

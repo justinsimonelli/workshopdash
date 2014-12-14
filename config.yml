@@ -1,0 +1,137 @@
+#=================== Dashboard Configuraiton ===================#
+#                                                               #
+#                                                               #
+#                                                               #
+#===============================================================#
+
+name: 'WorkshopDash'
+version: '0.1.0'
+
+proxy-uri: 'http://proxy.proxysherwin.com:80'
+
+# The cron time format for when the server should restart
+#restart-cron: '*/2 * * * *' # every minute for testing 
+restart-cron: '0 18 */3 * * ' # every 3 days at 6pm
+#restart-cron: '0 18 * * 0,5' # every sunday and friday at 6pm
+#restart-cron: '0 0 * * *' # every day at midnight
+
+# The time in seconds for when the dashboard should cycle pages
+dashboard-cycle: 60
+
+
+# ****** Global Action Configuration ******
+# This configuration section can be coppied to a widget configuraion section
+# bellow to configure widget specific action properties
+# *****************************************
+actions:
+  email:
+    html-body: '<span style="color:red;font-size:12pt;"><b>%{id} Widget status requires attention</b></span>'
+    #this can be anything and does not have to be a real email address
+    from: 'workshop-dashboard@sherwin.com'
+    # recipients for emails from all widgets
+    recipients:
+    - 'jonathan.d.mcpherson@sherwin.com'
+
+
+# ****** Widget Configuration ******
+# time:
+#   A widgets time property is the amound in seconds the widget should refresh
+# conditions:
+#   Conditions are used to trigger actions in both the frontend and backend based
+#   on a widgets returned values. To add a new condition for a widget, create a 
+#   new config node below in the format:
+#     widgets.<widget-id>.conditions.<action>: <condition>
+#   Where the conditional statement must be in the format
+#     '<variable-name> <operator> <primitive-value>'
+#   such as "value <= 2.5" or "status = 'complete'". Supported condition values are 
+#   string (value surrounded by quotes), number (including negative and decimal), and boolean. 
+#   If these conditions are satisfied, the variable name in the conditional statement
+#   will be observed by the backend and frontend. When the variable is updated, the new 
+#   value will be evaluated against the defined primitive value with the defined conditional 
+#   operator. The boolean result of this evaluation along with the widget's node will be 
+#   passed to the function defined by the action name in BaseWidget.actions (rb and coffee)
+# actions:
+#   Possible actions and action config properties are shown above in the actions section.
+widgets:
+  pricing_load:
+    time: 900
+    conditions:
+      #<action>:
+      warn: value = 1
+      danger: value < 1
+      warn-sound: value <= 1
+      email: value <= 1
+    actions:
+      email:
+        html-body: '<h1 style="color:red;">The Pricing Load widget status requires immediate attention.</h1><h4>There is currently only %{value} effective pricing dates in the pricing schedule which is less than the average load of 3</h4>'
+        #recipients: []
+        #- kelly.beechy@sherwin.com
+
+  ga_avg_page_load_times:
+    time: 1800
+
+  ga_visitor_count:
+    time: 30
+    # the range of time in minutes the trend graph will span
+    graph-time-span: 1440
+
+  jira_issue_count:
+    time: 120
+
+  jira_road_map:
+    time: 3600
+
+  google_calendar_swis:
+    time: 300
+
+  server_status:
+    time: 300
+
+  sw_stock_quote:
+    time: 60
+    graph-time-span: 1440
+
+  twitter_mentions:
+    time: 600
+
+  jenkins_build_maint:
+    time: 10
+    conditions:
+      danger: current_result = "FAILURE"
+  jenkins_build_proj:
+    time: 10
+    conditions:
+      danger: current_result = "FAILURE"
+  jenkins_build_emer:
+    time: 10
+    conditions:
+      danger: current_result = "FAILURE"
+
+  standups:
+    time: '1m'
+
+auth:
+  google:
+    # Google API profile ID.
+    profile-id: '56322766'
+    # Email of service account
+    account-email: '312327083568-3uchim556jn2s4lirqu46o6d2669j3dg@developer.gserviceaccount.com'
+    # The location of the google API account private key file
+    private-key-file: 'privatekey.p12'
+    # The name of the keychain entry containing the password to the private key file above
+    pk-keychain-password-name: 'ga-private-key-password'
+
+  twitter:
+    consumer-secret-name: 'twitter-consumer-secret'
+    access-token-secret-name: 'twitter-access-token-secret'
+
+  ldap:
+    username: 'jdm383'
+    keychain-password-name: 'LDAP'
+
+  mongodb:
+    user:
+    password:
+    host1: localhost
+    port1: 27017
+    database: PIM_RADIATOR
