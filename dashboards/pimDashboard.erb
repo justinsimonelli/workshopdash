@@ -1,7 +1,7 @@
 <script type='text/javascript'>
 $(function() {
   // These settings override the defaults set in application.coffee. You can do this on a per dashboard basis.
-  Dashing.gridsterLayout('[{"col":1,"row":1},{"col":3,"row":1},{"col":4,"row":1},{"col":4,"row":2},{"col":4,"row":3},{"col":2,"row":2}]')
+  Dashing.gridsterLayout('[{"col":1,"row":1,"size_x":2,"size_y":2},{"col":3,"row":1,"size_x":2,"size_y":1},{"col":3,"row":2,"size_x":2,"size_y":1},{"col":3,"row":3,"size_x":2,"size_y":1}, {"col":5, "row":1}]');
   Dashing.widget_base_dimensions = [370, 320]
   Dashing.numColumns = 5
 });
@@ -19,7 +19,7 @@ $(function() {
     </li>
 
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="welcome" data-view="Text" data-title="Hello" data-text data-moreinfo="Protip: You can drag the widgets around!"></div>
+      <div data-id="welcome" data-view="Text" data-title="Welcome Message!" data-text data-moreinfo="Protip: You can drag the widgets around!"></div>
     </li>
 
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
@@ -28,6 +28,10 @@ $(function() {
 
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
       <div data-id="demos" data-view="Text" data-text data-moreinfo="Time to show some stuff off.." data-title="Demos"></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="forecast" data-view="Forecast" data-widget_title="<img src='http://forecast.io/favicon.ico' />Weather Forecast"> ></div>
     </li>
 
     <!-- 

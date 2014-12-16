@@ -2,9 +2,10 @@ require 'mongo'
 
 module WorkshopDash
 	class MongoHelper
-		extend WorkshopDash
+		include WorkshopDash
 
-			attr_reader :database
+			#exposes database to outside world
+			#attr_reader :database
 
 			def self.db
 				return @db if @db

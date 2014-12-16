@@ -108,7 +108,7 @@ widgets:
       danger: current_result = "FAILURE"
 
   standups:
-    time: '1m'
+    time: 120
 
 auth:
   google:
@@ -126,8 +126,8 @@ auth:
     access-token-secret-name: 'twitter-access-token-secret'
 
   ldap:
-    username: 'jdm383'
-    keychain-password-name: 'LDAP'
+    username: 'jxs699'
+    keychain-password-name: 'dashing-ldap'
 
   mongodb:
     user:
@@ -135,3 +135,7 @@ auth:
     host1: localhost
     port1: 27017
     database: PIM_RADIATOR
+
+  forecast:
+    # Forecast API Key from https://developer.forecast.io
+    api-key: "f5d600559d86e4bf2019d6e3b48c1b89"
