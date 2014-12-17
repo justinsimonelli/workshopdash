@@ -81,11 +81,11 @@ widgets:
   jira_road_map:
     time: 3600
 
-  google_calendar_swis:
+  google_calendar_swpim:
     time: 300
 
   server_status:
-    time: 300
+    time: 30
 
   sw_stock_quote:
     time: 60
