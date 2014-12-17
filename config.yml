@@ -110,6 +110,9 @@ widgets:
   standups:
     time: 120
 
+  forecast:
+    time: 900
+
 auth:
   google:
     # Google API profile ID.
@@ -136,6 +139,15 @@ auth:
     port1: 27017
     database: PIM_RADIATOR
 
-  forecast:
-    # Forecast API Key from https://developer.forecast.io
-    api-key: "f5d600559d86e4bf2019d6e3b48c1b89"
+
+forecast:
+  # Forecast API Key from https://developer.forecast.io
+  api-key: 'f5d600559d86e4bf2019d6e3b48c1b89'
+  # Unit Format
+  # "us" - U.S. Imperial
+  # "si" - International System of Units
+  # "uk" - SI w. windSpeed in mph
+  units: 'us'
+  latitude: '41.4966813783784'
+  longitude: '-81.691889954955'
+

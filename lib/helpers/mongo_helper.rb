@@ -1,4 +1,5 @@
 require 'mongo'
+require_relative '../workshop_dash'
 
 module WorkshopDash
 	class MongoHelper
@@ -9,7 +10,7 @@ module WorkshopDash
 
 			def self.db
 				return @db if @db
-				@dbconfig = config['auth']['mongodb']
+				@dbconfig = config('auth.mongodb')
 				@database = @dbconfig['database']
 				@db = connection.db(@database)
 				@db.authenticate(@dbconfig['user'], @dbconfig['password']) unless (@dbconfig['user'].nil? || @dbconfig['user'].empty?)

@@ -21,6 +21,8 @@ class Dashing.Forecast extends Dashing.Widget
     # Handle incoming data
     # We want to make sure the first time they're set is after ready()
     # has been called, or the Skycons code will complain.
+    console.log('data: ' + JSON.stringify(data))
+
     if @forecast_icons.list.length
       @setIcons()
  

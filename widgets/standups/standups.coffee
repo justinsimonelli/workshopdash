@@ -8,4 +8,3 @@ class Dashing.Standups extends Dashing.Widget
       $(@node).find('ul').remove()
 
   onData: (data) ->
-  	console.log('inside standups data=' + JSON.stringify(data))
